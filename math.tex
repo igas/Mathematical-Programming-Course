@@ -345,4 +345,33 @@
   \begin{center}
 	либо $min(m,v,c)$ при $P \geq P_0$
   \end{center}
+  \section{Градиентный метод оптимизации (первого порядка)}
+  Идея: ищут стационарную точку (безусловный экстремум) равных значений показателя
+  \par
+  Направление крутого восхождения:
+  $$
+    \nabla K(\bar{q}^{\,r}) =
+    \begin{bmatrix}
+      \frac{\partial k}{\partial q_1}\\
+      \frac{\partial k}{\partial q_2}\\
+      \vdots\\
+      \frac{\partial k}{\partial q_n}\\
+    \end{bmatrix}
+  $$
+  \par
+  Направление наибольшего возрастания показателя и будет направлением градиента.
+  \par
+  Противоположное ему направление называется антиградиентом(отрицательным градиентом).
+  \par
+  С каждым шагом мы вычисляем новое направление градиента, с тем чтобы двигаться к экстремуму.
+  $$\bar{q}^{\,2+1} = \bar{q}^{\,2} + \theta\nabla K(\bar{q}^{\,(2)})$$
+  $$\bar{q}_i^{\,2+1} = \bar{q}^{\,2} + \theta\bigg(\frac{\partial k}{\partial q_i}\bigg)_k$$
+  \par
+  Иногда вектор градиент нормируется
+  $$\nabla K^{\,r}_{\,n}(q^{\,r}) = \frac{\Delta K(q_2)}{\Big[\sum_{k=1}^n\big(\frac{\partial k}{\partial q_i}\big)\Big]^{\frac{1}{2}}}$$
+  Выбор шага:
+  \begin{enumerate}
+    \item Метод с постоянным шагом
+    \item С оптимальным шагом
+  \end{enumerate}
 \end{document}
