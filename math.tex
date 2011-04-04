@@ -4,7 +4,9 @@
 \usepackage[english,russian]{babel}
 \usepackage{amsmath}
 \usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
 \usepackage{indentfirst}
+\usepackage{xfrac}
 \usepackage{mathtools}
 \usepackage{tikz}
 \usetikzlibrary{calc}
@@ -124,7 +126,25 @@
   Совершая различные вычисления, мы уменьшаем интервал неопределенности.
   \newpage
   \subsection{Метод дихотомии (деление пополам)}
-  TODO: ГРАФИК
+  \begin{tikzpicture}
+    \draw[|-|] (0,0) -- (5,0);
+    \draw (2,0) -- (2,0.75);
+    \draw (3,0) -- (3,1.25);
+    \draw (2.5,-0.05) -- (2.5,0.05);
+    \draw[decorate,decoration=brace] (3,0) -- (2,0);
+    \draw (2.5,0) node[below] {$\varepsilon$};
+    \draw[decorate,decoration=brace] (2,0) -- (2.5,0);
+    \draw (2.25,0.75) node[below] {$\sfrac{\varepsilon}{2}$};
+    \draw[decorate,decoration=brace] (2.5,0) -- (3,0);
+    \draw (2.75,0.75) node[below] {$\sfrac{\varepsilon}{2}$};
+    \draw[|-|] (2,-0.75) -- (5,-0.75);
+    \draw (3.25,-0.75) -- (3.25,-0.55);
+    \draw (3.75,-0.75) -- (3.75,-0.35);
+    \draw[|-|] (2,-1.5) -- (3.75,-1.5);
+    \draw[dashed] (2,-1.5) -- (2,0);
+    \draw[dashed] (5,0) -- (5,-0.75);
+    \draw[dashed] (3.75,-1.5) -- (3.75,-0.75);
+  \end{tikzpicture}
   \par
   Делим до тех пор, пока отрезок не будет достаточно мал.
   \par
