@@ -8,6 +8,15 @@
 \geometry{right=1cm}
 %\geometry{top=2cm}
 %\geometry{bottom=2cm}
+
+% newline after \paragraph
+\makeatletter 
+\renewcommand\paragraph{\@startsection{paragraph}{4}{0mm}% 
+{-\baselineskip} % 
+{0.5\baselineskip} % 
+{\normalfont\bfseries}}% 
+\makeatother 
+
 \begin{document}
   \pagestyle{plain}
   \begin{titlepage}
@@ -267,4 +276,25 @@
   \begin{enumerate}
   	\item Стационарная точка.
   \end{enumerate}
+  
+  \section{Метод множителей лагранжа}
+  Допущения:
+  \begin{enumerate}
+  	\item Функция гладкая и в каждой точке имеет 1-ю и 2-ю производные.
+  	\item $K_\rho = K_{\rho0}; \; \rho = 1,2,\ldots,m$  		
+  \end{enumerate}
+  $$L(\bar{q}) = K(\bar{q}) + \sum_{\rho=1}^{m} \lambda_\rho[K_{\rho_0} - K_\rho(\bar{q})]$$
+  $$\frac{\partial L}{\partial q_i} = \frac{\partial K}{\partial q_i} - \sum_{\rho=1}^{m} \lambda_\rho \frac{\partial K_\rho(\bar{q})}{\partial q_i} = 0; \; i=1,2,\ldots,n$$
+  $$\frac{\partial L}{\partial \lambda_\rho} = [K_{\rho_0} - K_\rho] = 0$$
+  \paragraph*{Пример}
+  $max P$ \\
+  m - масса \\
+  v - объём \\
+  c - экономия \\
+  $$max P$$
+  $$m(v,c) \leq m(v_0,c_0)$$
+  \begin{center}
+	либо $min(m,v,c)$ при $P \geq P_0$
+  \end{center}
+
 \end{document}
