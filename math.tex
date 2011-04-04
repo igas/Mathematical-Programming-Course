@@ -349,7 +349,15 @@
   \section{Поисковые методы}
   Рассмотрим условия, когда локальный экстремум является глобальным. Рассмотрим понятия выпуклой и вогнутой функции.\\
   $$z = \lambda (K(\bar{q}') + (1-\lambda)K(\bar{q}''))$$  
-  TODO: График;
+  \begin{tikzpicture}
+    \draw[->] (-0.5,0)--(6,0) node[anchor=north] {$q$};
+  	\draw[->] (0,-0.5)--(0,4) node[anchor=east] {$K$};
+  	\draw[help lines] (1.5,0) -- ++(0,1.5) -- ++(3,1) -- ++(0,-2.5);
+  	\draw (1.5,1.5) .. controls (2,2) and (3,3) .. (4.5,2.5);
+  	\draw (1.5,1.5) .. controls (2,1) and (4,1.5) .. (4.5,2.5);
+  	\draw (4,3) -- ++(0.5,0.75) node[anchor=south] {Выпуклая};
+  	\draw (4,1.75) -- ++(1,-0.25) node[anchor=west] {Вогнутая};
+  \end{tikzpicture}
   \\VERIFY  
   $$K[\lambda \bar{q}' + (1-\lambda+q'')] \leq Z = \lambda(K(\bar{q}' + (1-\lambda)K(\bar{q}'))$$
   Если знак неравенства $\leq$ - имеем дело с выпуклой функцией.\\
