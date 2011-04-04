@@ -423,4 +423,61 @@
     \item Метод по своей сути не рассчитан на учёт ограничений.
   \end{itemize}
 
+  \paragraph*{Задача}
+  $$K = (q_1 - 5)^2 + (q_2 - 8)^2 + (q_1 - q_2)^2$$
+  Найти минимум функции.\\
+  Начальные условия:\\
+  $q^0 = 
+  \begin{bmatrix}
+    0 \\ 
+    0    
+  \end{bmatrix}$
+  $$\frac{\partial K}{\partial q_1} = 2(q_1 - 5) + 2(q_1 - q_2) = -10$$
+  $$\frac{\partial K}{\partial q_2} = 2(q_2 - 8) - 2(q_1 - q_2) = -16$$
+  $$\frac{\partial^2K}{\partial q_1^2} = 2 + 2 = 4$$
+  $$\frac{\partial^2K}{\partial q_2^2} = 2 + 2 = 4$$
+  $$\frac{\partial^2K}{\partial q_1 \partial q_2} = -2$$  
+  $$\mathcal{J} = 
+  \begin{bmatrix}
+    4 & -2 \\
+    -2 & 4
+  \end{bmatrix} - \text{Матрица Гессе}$$
+  $$\mathcal{\tilde{J}} = 
+  \begin{bmatrix}
+    4 & 2 \\
+    2 & 4
+  \end{bmatrix}  
+  $$
+  $$\Delta = 16 - 4 = 12$$
+  $$\mathcal{J}^{-1}(\bar{q}) = \frac{1}{12}\begin{bmatrix}
+    4 & 2 \\
+    2 & 4
+  \end{bmatrix}$$
+  $$\nabla K = \begin{bmatrix}
+    -10 \\
+    -16
+  \end{bmatrix}$$
+  Всё это справедливо только в нулевой точке.
+  $$\bar{q}_0 = \begin{bmatrix}
+    0 \\
+    0
+  \end{bmatrix} - \begin{bmatrix}
+    \frac{1}{3} & \frac{1}{6} \\[0.3em]
+    \frac{1}{6} & \frac{1}{3}
+  \end{bmatrix} \ast \begin{bmatrix}
+    -10 \\
+    -16
+  \end{bmatrix} = \begin{bmatrix}
+    0 \\
+    0
+  \end{bmatrix} + \begin{bmatrix}
+    \frac{1}{3}\cdot 10 + \frac{1}{6}\cdot 16 \\
+    \frac{1}{6}\cdot 10 + \frac{1}{3}\cdot 16
+  \end{bmatrix} = \begin{bmatrix}
+    6 \\
+    7
+  \end{bmatrix}$$
+  \textit{Перемножение матриц: первая строка на первый столбец; вторая строка на первый столбец.}\\
+  Преимущество: высокая скорость сходимости.
+  Недостаток: сложность вычисления матрицы Гессе. 
 \end{document}
