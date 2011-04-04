@@ -6,6 +6,8 @@
 \usepackage{mathtools}
 \usepackage{tikz}
 \usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathreplacing}
+\usepgflibrary{shapes.misc}
 \usepackage[a5paper]{geometry}
 \geometry{left=2cm}
 \geometry{right=1cm}
@@ -449,7 +451,19 @@
   Мы свели задачу многомерной оптимизации к задаче одномерной оптимизации. Условная функция должна быть гладкая и должны существовать по крайней мере две производные; и матрица Гессе должна быть знакоопределённая.\\
   Если мы попадём в седло, то из этой точки надо вылезать с помощью другого метода. Если функция гладкая и имеет 3 производных, то градиентный метод сходится при $r \rightarrow \infty$. Если функция квадратичная, то мы приходим к экстремуму за конечное число шагов.
   \paragraph*{Ограничение значений параметра}
-  TODO График.
+  \begin{tikzpicture}
+    \draw[->] (-0.5,0)--(7,0) node[anchor=north] {$q_1$};
+  	\draw[->] (0,-0.5)--(0,5) node[anchor=east] {$q_2$};
+    \draw (1,1) rectangle (6,4);  	
+  	\coordinate (a) at (2,2.5);
+  	\coordinate (b) at (5.5,5);
+  	\coordinate (c) at ($ (a)!0.60!(b) $);
+  	\draw                             (a) -- (b);
+  	\draw [decorate,decoration={brace,raise=5pt}] (a) -- (b) node[pos=0.45,above=10pt] {$\Theta_{\text{опт}}$};
+  	\draw [decorate,decoration={brace,mirror,raise=5pt}] (a) -- (c) node[pos=0.7,below=12pt] {$\Theta_{\text{доп}}$};
+  	\draw[->] (5.25,4) -- +(0,-1);
+  	\node[cross out, draw, inner sep=3pt] at (5.25,4) {};
+  \end{tikzpicture}
   $$\Theta_r = min[\Theta_{\text{доп}} - \Theta_{\text{опт}}]$$
   $$\Theta_{\text{доп}} - \text{допустимое}$$
   $$\Theta_{\text{опт}} - \text{оптимальное}$$
