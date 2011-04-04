@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english,russian]{babel}
 \usepackage{amsmath}
+\usepackage{tikz}
 \usepackage[a5paper]{geometry}
 \geometry{left=2cm}
 \geometry{right=1cm}
@@ -349,7 +350,7 @@
   Рассмотрим условия, когда локальный экстремум является глобальным. Рассмотрим понятия выпуклой и вогнутой функции.\\
   $$z = \lambda (K(\bar{q}') + (1-\lambda)K(\bar{q}''))$$  
   TODO: График;
-  VERIFY  
+  \\VERIFY  
   $$K[\lambda \bar{q}' + (1-\lambda+q'')] \leq Z = \lambda(K(\bar{q}' + (1-\lambda)K(\bar{q}'))$$
   Если знак неравенства $\leq$ - имеем дело с выпуклой функцией.\\
   Если неравенство строгое - строго выпуклая функция.\\
@@ -358,13 +359,20 @@
   Если на выпуклом множестве определена вогнутая функция, тогда локальный максимум является глобальным.
   
   \section{Метод Гаусса-Зейделя}
-  Функция $K(q_1, q_2, \ldots, q_n)$ \\
-  $q_1, q_2, \ldots, q_n = const $
+  Функция $K(q_1, q_2, \ldots, q_n);\;q_1, q_2, \ldots, q_n = const $
   \begin{enumerate}
     \item $max(min(K(q_1)))$ \\
-      TODO График:
+      \begin{tikzpicture}
+  	    \draw[->] (-0.5,0)--(4,0) node[anchor=north] {$q_1$};
+  	    \draw[->] (0,-0.5)--(0,4) node[anchor=east] {$q$};
+  	    \draw (2,2) -- +(-0.5,0) -- +(-0.5,0.5) -- +(0.5, 0.5) -- +(0.5,-0.5) -- +(-1,-0.5) -- +(-1,1) -- +(1,1) -- +(1,-1) -- +(-1,-1);
+      \end{tikzpicture}
     \item $min(max(K(q_1)))$ \\
-      TODO График:
+      \begin{tikzpicture}
+        \draw[->] (-0.5,0)--(4,0) node[anchor=north] {$q$};
+  	    \draw[->] (0,-0.5)--(0,4) node[anchor=east] {$K$};
+  	    \draw (1,1) -- ++(1,0) -- ++(0,1) -- ++(0.5,0) -- ++(0,0.5) -- ++(0.25,0) -- ++(0,0.25);
+      \end{tikzpicture}
   \end{enumerate}
   $$|q_1^m - q_1^r| \leq \epsilon_i - q_n$$
   $$|K^m - K^r| \leq \eta $$
