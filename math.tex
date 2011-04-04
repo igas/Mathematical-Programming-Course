@@ -4,6 +4,7 @@
 \usepackage[english,russian]{babel}
 \usepackage{amsmath}
 \usepackage{tikz}
+\usepackage{mathtools}
 \usepackage[a5paper]{geometry}
 \geometry{left=2cm}
 \geometry{right=1cm}
@@ -406,14 +407,12 @@
     \item Метод с постоянным шагом
     \item С оптимальным шагом
   \end{enumerate}
-  
   \section{Метод с оптимальным шагом}
   Есть $k$ в точке $r+1$
   $$K(\bar{q}^{r+1}) = K[\bar{q}^r + \Theta\nabla K(\bar{q}^r)]$$
   Ищем $\Theta$, которое соответствует $max(K(q^{r+1}))$ и $min$, если мы решаем задачу на минимум.\\
   Мы свели задачу многомерной оптимизации к задаче одномерной оптимизации. Условная функция должна быть гладкая и должны существовать по крайней мере две производные; и матрица Гессе должна быть знакоопределённая.\\
   Если мы попадём в седло, то из этой точки надо вылезать с помощью другого метода. Если функция гладкая и имеет 3 производных, то градиентный метод сходится при $r \rightarrow \infty$. Если функция квадратичная, то мы приходим к экстремуму за конечное число шагов.
-  
   \paragraph*{Ограничение значений параметра}
   TODO График.
   $$\Theta_r = min[\Theta_{\text{доп}} - \Theta_{\text{опт}}]$$
@@ -430,7 +429,58 @@
     \item Численные методы могут давать большие ошибки.
     \item Метод по своей сути не рассчитан на учёт ограничений.
   \end{itemize}
-
+  \section{Градиентный метод (второго порядка)}
+  $$K(q^{\,r+1}) = K(\bar{q}^{\,r}) + \sum_{i = 1}^n\bigg(\frac{\partial k}{\partial q_1}\bigg)_r\Delta q_ir + \frac{1}{2}\sum^{n}_{i,j=1}\bigg(\frac{\partial^{\,2}k}{\partial q_i\partial q_j}\bigg)_r\Delta q_ir\Delta q_jr$$
+  $$\Delta q_ir = q_i^{\,r+1} - q_i^{\,r}$$
+  \par
+  В матричной форме
+  \begin{equation}\label{eq:quad}
+    \phi^{\,2} = \overbracket[0.5pt][7pt]{\nabla^{\,T}\underset{\mathclap{\begin{matrix}\uparrow\\\text{\scriptsize{вектор}}\\\text{\scriptsize{строка}}\end{matrix}}}{K}(\bar{q}^{\,r})\bar{\Delta}\underset{\mathclap{\begin{matrix}\uparrow\\\text{\scriptsize{вектор}}\\\text{\scriptsize{столбец}}\end{matrix}}}{q^{\,2}}}^{\mathclap{\text{при умножении получается число}}}+\frac{1}{2}(\Delta\bar{q}^{\,r})^{\,T}\mathcal{J}(\bar{q}^{\,r})_\Delta\bar{q}^{\,r}
+  \end{equation}
+  \par
+  \ref{eq:quad} - квадратичная форма.
+  \begin{equation}\label{eq:up}
+    \frac{\partial \phi^{\,r}}{\partial \bar{\Delta}q^{\,r}}
+  \end{equation}
+  \par
+  \ref{eq:up} - метод наискорейшего восхождения(спуска, если решаем задачу на $min$)
+  \par
+  В формуле \ref{eq:quad} возьмем производную по первому и второму слогаемому
+  $$\nabla K(\bar{q}^{\,r}) + \mathcal{J}(\bar{q}^{\,r})\Delta\bar{q}^{\,r} = 0$$
+  $$\mathcal{J}(q\,')\bar{\Delta} q^{\,r} = \nabla K(\bar{q}^{\,r})$$
+  \par
+  Умножаем на матрицу, обратную матрице $\mathcal{J}$.
+  $$\underbrace{\mathcal{J}^{\,-1}(\bar{q}^{\,r})\mathcal{J}(\bar{q}^{\,r})}_{\mathclap{\text{E - единичная матрица}}}\bar{\Delta}q^{\,r} = \mathcal{J}^{\,-1}(q^{\,2})\nabla K(\bar{q}^{\,2})$$
+  \par
+  \begin{equation}\label{eq:cool}
+    \bar{\Delta}q^{\,r} = \mathcal{J}^{\,-1}(q^{\,r})\nabla K(\bar{q}^{\,r})
+  \end{equation}
+  \par
+  \ref{eq:cool} - направление самого крутого восхождения или наискорейшего спуска.
+  \begin{equation}
+    \bar{q}^{\,r+1} = \bar{q}^{\,r} - \theta\mathcal{J}^{\,-1}(\bar{q}^{\,r})\nabla K(\bar{q}^{\,r})
+  \end{equation}
+  \par
+  Окончательное выражение для градиентного метода второго порядка(метода Ньютона)
+  \par
+  Если функция $K$ - квадратичная, то оптимальная точка достигается за один шаг и точка берется равной 1.
+  $$
+    \mathcal{J} =
+    \begin{bmatrix}
+      a_{11} & a_{12}\\
+      a_{21} & a_{22}
+    \end{bmatrix}
+  $$
+  $$
+    \tilde{\mathcal{J}} =
+    \begin{bmatrix}
+      a_{11} & -a_{12}\\
+      -a_{21} & a_{22}
+    \end{bmatrix}
+  $$
+  $$
+    \mathcal{J} = \frac{1}{\Delta}\mathcal{J}
+  $$
   \paragraph*{Задача}
   $$K = (q_1 - 5)^2 + (q_2 - 8)^2 + (q_1 - q_2)^2$$
   Найти минимум функции.\\
