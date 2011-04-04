@@ -1,4 +1,4 @@
-\documentclass[14pt,a5paper]{book}
+\documentclass[12pt,a5paper]{scrbook}
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english,russian]{babel}
@@ -6,9 +6,10 @@
 \usepackage[a5paper]{geometry}
 \geometry{left=2cm}
 \geometry{right=1cm}
-\geometry{top=2cm}
-\geometry{bottom=2cm}
+%\geometry{top=2cm}
+%\geometry{bottom=2cm}
 \begin{document}
+  \pagestyle{plain}
   \begin{titlepage}
     \newgeometry{left=1cm,right=1cm,top=3cm,bottom=1cm}
     \begin{center}
@@ -67,6 +68,7 @@
   $q$ - целочисленные, тогда имеем дело с целочисленным программированием (линейным и нелинейным). Разбиение задачи на подзадачи.\par
   Стохастическое программирование - нам не известны точные значения $q$, но известны их вероятностные характеристики или интервалы изменения их значений.\par
   \chapter{Методы одномерной оптимизации}
+  \pagestyle{headings}
   $$k(q)\to min(max)$$\par
   Унимодальная функция\par
   \{ГРАФИК\}\par
@@ -151,9 +153,104 @@
     \item По формуле определяется $max(min)$ квадратичной зависимости, которая проходит через 3 оставшиеся точки.
     \item В случае необходимости уменьшают на порядок интервал и заново начинаем процедуру с полученной экстремальной точки.
   \end{enumerate}
-  \newpage
+  \chapter{Основы нелинейного программирования}
+  Множество - это совокупность раздельных объектов, рассматриваемых в данной задаче как единое целое.
+  \par
+  Конечное множество имеет конечное количество элементов меньше натурального числа $N$.
+  \par
+  Если множество упорядочено - это картеж.
+  \par
+  $$
+    q^{(1)} =
+    \begin{bmatrix}
+      q_{11}\\
+      q_{12}\\
+      \vdots
+    \end{bmatrix}
+  $$
+  $$\bar{q}^{\,1T}$$
+  \par
+  Между точками можно совершать операции и выделять соотношения.
+  \begin{enumerate}
+    \item Расстояния\\$\bar{q}^{\,(1)}, \bar{q}^{\,(2)}, \bar{q}^{\,(3)}$
+  \end{enumerate}
+  \begin{enumerate}
+    \item Аксиома идентичности\\$d(\bar{q}^{\,(1)}, \bar{q}^{\,(2)}) = 0$
+    \item Аксиома симметрии\\$d(\bar{q}^{\,(1)}, \bar{q}^{\,(2)}) = (\bar{q}^{\,(2)}, \bar{q}^{\,(1)})$
+    \item Аксиома треугольника\\$d(\bar{q}^{\,(1)}, \bar{q}^{\,(3)})\leq d(\bar{q}^{\,(1)}, \bar{q}^{\,(2)}) + d(\bar{q}^{\,(2)}, \bar{q}^{\,(3)})$
+  \end{enumerate}
+  \par
+  Если на множестве определены операции, то это множество обладает структурой (называют пространством)
+  \par
+  Если в пространство определяло расстояние (метрика), то пространство называют TODO.
+  \par
+  В судовых сетях прокладка кабеля осуществляется по Манхеттеновскому расстоянию.
+  \par
+  Евклидово расстояние:
+  $$
+    d
+      \Big(
+        \bar{q}^{\,\left(1\right)}, \bar{q}^{\,\left(2\right)}
+      \Big)
+      =
+      \left[
+        \sum_{i = 1}^{n}
+        \left[
+          q^{(1)}_{i} - q^{(2)}
+        \right]^2
+      \right]^{\frac{1}{2}}
+  $$
+  \par
+  Общая формула расстояния:
+  $$
+  	d
+      \Big(
+        \bar{q}^{\,\left(1\right)}, \bar{q}^{\,\left(2\right)}
+      \Big)
+      =
+      \left[
+        \sum_{i = 1}^{n}
+        \left[
+          q^{(1)}_{i} - q^{(2)}
+        \right]^p
+      \right]^{\frac{1}{p}},\; p \to \infty
+  $$
+  $$
+  	d
+      \Big(
+        \bar{q}^{\,\left(1\right)}, \bar{q}^{\,\left(2\right)}
+      \Big)
+      = max
+      \bigg[
+        \Big(
+          q_1^{(1)} - q_1^{(2)}
+        \Big)
+        \Big(
+          q_2^{(1)} - q_2^{(2)}
+        \Big)
+        \ldots
+        \Big(
+          q_n^{(1)} - q_n^{(2)}
+        \Big)
+      \bigg]
+  $$
+  \par
+  Бесконечное ограниченное множество
+  \par
+  $d\big(\bar{q}^{(1)}, \bar{q}^{(2)}\big) < M$, то множество бесконечно, но ограничено.
+  \par
+  Сфера:
+  \par
+  $d\big(\bar{q}, \bar{a}\big) = R$
+  \par
+  Шар:
+  \par
+  Замкнутый: $d\big(\bar{q}, \bar{a}\big) \leq R$
+  \par
+  Открытый: $d\big(\bar{q}, \bar{a}\big) < R$
+  \par
+  TODO: пятно
   \begin{equation} \label{eq:someequation}
     \bar{q}^{\,r+1}=\bar{q}^{\,r}-\theta J^{\,-1}(q^{\,r})\nabla K(\bar{q}^{\,r})
   \end{equation}
-В частном случае
 \end{document}
