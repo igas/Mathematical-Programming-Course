@@ -6,6 +6,8 @@
 \usepackage{tikz}
 \usepackage{indentfirst}
 \usepackage{mathtools}
+\usepackage{tikz}
+\usetikzlibrary{calc}
 \usepackage[a5paper]{geometry}
 \geometry{left=2cm}
 \geometry{right=1cm}
@@ -385,7 +387,7 @@
   \begin{tikzpicture}
     \draw[->] (-0.5,0)--(6,0) node[anchor=north] {$q$};
   	\draw[->] (0,-0.5)--(0,4) node[anchor=east] {$K$};
-  	\draw[help lines] (1.5,0) -- ++(0,1.5) -- ++(3,1) -- ++(0,-2.5);
+  	\draw[help lines] (1.5,0) node[below] {$q'$} -- ++(0,1.5) -- ++(3,1) -- ++(0,-2.5) node[below] {$q''$};
   	\draw (1.5,1.5) .. controls (2,2) and (3,3) .. (4.5,2.5);
   	\draw (1.5,1.5) .. controls (2,1) and (4,1.5) .. (4.5,2.5);
   	\draw (4,3) -- ++(0.5,0.75) node[anchor=south] {Выпуклая};
@@ -419,8 +421,28 @@
   $$|K^m - K^r| \leq \eta $$
 
   \section{Градиентный метод оптимизации (первого порядка)}
-  Идея: ищут стационарную точку (безусловный экстремум) равных значений показателя
-  \par
+  Идея: ищут стационарную точку (безусловный экстремум) равных значений показателя.\\
+  \begin{tikzpicture}
+    \draw[->] (-0.5,0)--(6,0) node[anchor=north] {$q_1$};
+  	\draw[->] (0,-0.5)--(0,5) node[anchor=east] {$q_2$};
+  	\draw (3,2.9) circle[x radius=2mm, y radius=1mm, rotate=30];
+  	\draw (2.5,2.5) .. controls +(1mm,6mm) and +(-1mm,4mm) .. (3.5,3)
+  					.. controls +(0,-4mm) and +(0,-2mm) .. (2.5,2.5);
+  	\draw (2,2) .. controls +(0,1) and +(-0.25,0.25) .. (3,3.5)
+  				.. controls +(0.3,-0.2) and +(0.5,1) .. (3.5,2.5)
+  				.. controls +(-0.2,-0.5) and +(0,-0.3) .. (2,2);
+  	\draw (1.5,1.5) .. controls +(0.1,2.5) and +(0.3,2) .. ++(3	,2)
+  					.. controls +(0,-1) .. ++(-0.5,-1.5)
+  					.. controls +(-0.5,-0.5) and +(-0.1,-0.8) .. (1.5,1.5);
+  	\coordinate (a) at (1,2);
+  	\coordinate (b) at ($(a) +(49:4cm)$);
+  	\draw[help lines] (a) -- (b);
+  	\coordinate (c) at ($ (a)!0.50!(b) $);
+  	\coordinate (d) at ($ (c)!1cm!-90:(b) $);
+	\draw[help lines] (c) -- (d);
+  	\draw (4.3,4.7) -- ++(1,0.25) node[anchor=west] {кривые равных значений};
+	\draw (5.3,4.6) node[anchor=west] {показателя};
+  \end{tikzpicture}\\
   Направление крутого восхождения:
   $$
     \nabla K(\bar{q}^{\,r}) =
