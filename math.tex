@@ -10,6 +10,7 @@
 \usetikzlibrary{calc}
 \usetikzlibrary{decorations.pathreplacing}
 \usepgflibrary{shapes.misc}
+\usetikzlibrary{intersections}
 %\usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage[a5paper]{geometry}
@@ -330,6 +331,32 @@
   
   \paragraph{Рассмотрим виды экстремумов}
   TODO: График\\
+  \begin{tikzpicture}
+    \clip (-1,-1) rectangle (10,7);
+    \draw[->] (-0.5,0)--(9,0) node[anchor=north] {$q$};
+  	\draw[->] (0,-0.5)--(0,6) node[anchor=east] {$k$};
+  	\coordinate (a2) at (1,1);
+  	\coordinate (a1) at (2,5);
+  	\coordinate (a4) at (3,2);
+  	\coordinate (a5) at (4,2);
+  	\coordinate (a6) at (5,2);
+  	\coordinate (a3) at (6,3.5);
+  	\coordinate (x) at (7,1.5);
+  	\filldraw (a2) circle (1pt) node[below] {2};
+  	\filldraw (a1) circle (1pt) node[above] {1};
+  	\filldraw (a4) circle (1pt) node[below] {4};
+  	\filldraw (a5) circle (1pt) node[below] {5};
+  	\filldraw (a6) circle (1pt) node[below] {6};
+  	\filldraw (a3) circle (1pt) node[below] {3};
+  	\draw[name path=curve 1] (0.5,6) .. controls ($(a2) +(0,-8)$) and ($(a1) +(0,5)$) .. (2.5,3.5);
+  	\draw (2.5,3.5) ..controls ($(a4) +(-0.3,0.1)$) .. (a4);
+  	\draw (a4) .. controls ($(a5) +(0,-.1)$) .. (a6);
+  	\draw (a6) .. controls ($(a6) +(.3,.1)$) .. (5.5,3);
+  	\draw (5.5,3) .. controls ($(a3) +(-.4,-.2)$) and ($(a3) +(-.2,0)$) .. (a3);
+  	\draw (a3) .. controls ($(a3) +(.2,0)$) and ($(a3) +(.4,-.1)$) .. (6.5,3);
+  	\draw (6.5,3) .. controls ($(x) +(-.2,.1)$) .. (x);
+  	\draw[name path=curve 2] (x) .. controls ($(x) +(0.3,0)$) .. (7.6,5);
+  \end{tikzpicture}\\
   Глобальный сильный максимум (1)
   $$k(\bar{q}_0) > k(\bar{q});\, q \in \Theta$$
   Глобальный сильный минимум (2)
