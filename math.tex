@@ -617,15 +617,16 @@
   \section{Градиентный метод (второго порядка)}
   $$k(q^{\,r+1}) = k(\bar{q}^{\,r}) + \sum_{i = 1}^n\bigg(\frac{\partial k}{\partial q_1}\bigg)_r\Delta q_ir + \frac{1}{2}\sum^{n}_{i,j=1}\bigg(\frac{\partial^{\,2}k}{\partial q_i\partial q_j}\bigg)_r\Delta q_ir\Delta q_jr$$
   $$\Delta q_ir = q_i^{\,r+1} - q_i^{\,r}$$
+  $$\Phi_r = k(\bar{q}^{\,r+1} - k(\bar{q}^{\,r})$$
   \par
   В матричной форме
   \begin{equation}\label{eq:quad}
-    \phi^{\,2} = \overbracket[0.5pt][7pt]{\nabla^{\,T}\underset{\mathclap{\begin{matrix}\uparrow\\\text{\scriptsize{вектор}}\\\text{\scriptsize{строка}}\end{matrix}}}{k}(\bar{q}^{\,r})\bar{\Delta}\underset{\mathclap{\begin{matrix}\uparrow\\\text{\scriptsize{вектор}}\\\text{\scriptsize{столбец}}\end{matrix}}}{q^{\,2}}}^{\mathclap{\text{при умножении получается число}}}+\frac{1}{2}(\Delta\bar{q}^{\,r})^{\,T}\mathcal{J}(\bar{q}^{\,r})_\Delta\bar{q}^{\,r}
+    \Phi^{\,r} = \overbracket[0.5pt][7pt]{\nabla^{\,T}\underset{\mathclap{\begin{matrix}\uparrow\\\text{\scriptsize{вектор}}\\\text{\scriptsize{строка}}\end{matrix}}}{k}(\bar{q}^{\,r})\bar{\Delta}\underset{\mathclap{\begin{matrix}\uparrow\\\text{\scriptsize{вектор}}\\\text{\scriptsize{столбец}}\end{matrix}}}{q^{\,2}}}^{\mathclap{\text{при умножении получается число}}}+\frac{1}{2}(\Delta\bar{q}^{\,r})^{\,T}\mathcal{J}(\bar{q}^{\,r})_\Delta\bar{q}^{\,r}
   \end{equation}
   \par
   \ref{eq:quad} - квадратичная форма.
   \begin{equation}\label{eq:up}
-    \frac{\partial \phi^{\,r}}{\partial \bar{\Delta}q^{\,r}}
+    \frac{d \phi^{\,r}}{d \bar{\Delta}q^{\,r}}
   \end{equation}
   \par
   \ref{eq:up} - метод наискорейшего восхождения(спуска, если решаем задачу на $min$)
@@ -649,6 +650,7 @@
   Окончательное выражение для градиентного метода второго порядка(метода Ньютона)
   \par
   Если функция $k$ - квадратичная, то оптимальная точка достигается за один шаг и точка берется равной 1.
+  \paragraph*{Пример}
   $$
     \mathcal{J} =
     \begin{bmatrix}
@@ -659,14 +661,13 @@
   $$
     \tilde{\mathcal{J}} =
     \begin{bmatrix}
-      a_{11} & -a_{12}\\
-      -a_{21} & a_{22}
+      a_{22} & -a_{21}\\
+      -a_{12} & a_{11}
     \end{bmatrix}
   $$
   $$
-    \mathcal{J} = \frac{1}{\Delta}\mathcal{J}
-  $$
-  \paragraph*{Задача}
+    \mathcal{J} = \frac{1}{\Delta}\mathcal{\tilde{J}}
+  $$  
   $$k = (q_1 - 5)^2 + (q_2 - 8)^2 + (q_1 - q_2)^2$$
   Найти минимум функции.\\
   Начальные условия:\\
@@ -721,6 +722,7 @@
     7
   \end{bmatrix}$$
   \textit{Перемножение матриц: первая строка на первый столбец; вторая строка на первый столбец.}\\
+  Подставим в выражение $q_0$ и получим минимум $k=3$.\par
   Преимущество: высокая скорость сходимости.
   Недостаток: сложность вычисления матрицы Гессе. 
 \end{document}
