@@ -543,14 +543,15 @@
   					.. controls +(-0.5,-0.5) and +(-0.1,-0.8) .. (1.5,1.5);
   	\coordinate (a) at (1,2);
   	\coordinate (b) at ($(a) +(49:4cm)$);
-  	\draw[help lines] (a) -- (b);
+  	\draw (a) -- (b);
   	\coordinate (c) at ($ (a)!0.50!(b) $);
   	\coordinate (d) at ($ (c)!1cm!-90:(b) $);
-	\draw[help lines] (c) -- (d);
+	\draw[->] (c) -- (d);	
   	\draw (4.3,4.7) -- ++(1,0.25) node[anchor=west] {кривые равных значений};
 	\draw (5.3,4.6) node[anchor=west] {показателя};
-  \end{tikzpicture}\\
-  Направление крутого восхождения:
+	\draw (2.8,3.3) -- (5.3,4) node[right] {направление крутого};
+	\draw (5.3,3.7) node[right] {восхождения};
+  \end{tikzpicture}
   $$
     \nabla k(\bar{q}^{\,r}) =
     \begin{bmatrix}
@@ -566,16 +567,19 @@
   Противоположное ему направление называется антиградиентом(отрицательным градиентом).
   \par
   С каждым шагом мы вычисляем новое направление градиента, с тем чтобы двигаться к экстремуму.
-  $$\bar{q}^{\,2+1} = \bar{q}^{\,2} + \Theta\nabla k(\bar{q}^{\,(2)})$$
-  $$\bar{q}_i^{\,2+1} = \bar{q}^{\,2} + \Theta\bigg(\frac{\partial k}{\partial q_i}\bigg)_k$$
+  $$\bar{q}^{\,r+1} = \bar{q}^{\,r} + \Theta\nabla k(\bar{q}^{\,(r)}),$$
+  где $\Theta$ - величина шага.
+  $$\bar{q}_i^{\,r+1} = \bar{q}^{\,r} + \Theta\bigg(\frac{\partial k}{\partial q_i}\bigg)_r$$
   \par
   Иногда вектор градиент нормируется
-  $$\nabla k^{\,r}_{\,n}(q^{\,r}) = \frac{\Delta k(q_2)}{\Big[\sum_{k=1}^n\big(\frac{\partial k}{\partial q_i}\big)\Big]^{\frac{1}{2}}}$$
+  $$\nabla k^{\,r}_{\,n}(\bar{q}^{\,r}) = \frac{\Delta k(q_n)}{\Big[\sum_{i=1}^n\big(\frac{\partial k}{\partial q_i}\big)\Big]^{\frac{1}{2}}}$$
   Выбор шага:
   \begin{enumerate}
     \item Метод с постоянным шагом
     \item С оптимальным шагом
   \end{enumerate}
+  При большем шаге мы можем пропустить экстремум и процесс будет расходящимся.
+  
   \section{Метод с оптимальным шагом}
   Есть $k$ в точке $r+1$
   $$k(\bar{q}^{r+1}) = k[\bar{q}^r + \Theta\nabla k(\bar{q}^r)]$$
