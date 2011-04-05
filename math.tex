@@ -192,10 +192,10 @@
   $$k(q_2)>k(q_1)$$ TODO: график
   \subsection{Метод с переменным (пропорциональным) шагом}
   TODO: График
-  $$q_3 = q_2 + \theta\frac{k(q_2) - k(q_1)}{\underbrace{q_2 - q_1}_{\lambda}}$$
-  $$q^{(r)} = q^{(r-1)} + \theta = \frac{k(q^{r-1}) - k(q^{r+1})}{q^{(r+1)} - q^{(r-1)}}$$
-  $$\theta = \frac{k(q^{(2)}) - k(q^{(1)})}{\lambda}$$
-  $$\theta = \frac{\lambda^2}{k(q^{(2)}) - k(q^{(1)})}$$
+  $$q_3 = q_2 + \Theta\frac{k(q_2) - k(q_1)}{\underbrace{q_2 - q_1}_{\lambda}}$$
+  $$q^{(r)} = q^{(r-1)} + \Theta = \frac{k(q^{r-1}) - k(q^{r+1})}{q^{(r+1)} - q^{(r-1)}}$$
+  $$\Theta = \frac{k(q^{(2)}) - k(q^{(1)})}{\lambda}$$
+  $$\Theta = \frac{\lambda^2}{k(q^{(2)}) - k(q^{(1)})}$$
   \par
   Частный случай градиентного метода. Шаг завичит от вида поверхности.
   \subsection{Метод с переменным шагом с последующей квадратичной апроксимацией}
@@ -388,11 +388,11 @@
   Допущения:
   \begin{enumerate}
   	\item Функция гладкая и в каждой точке имеет 1-ю и 2-ю производные.
-  	\item $K_\rho = K_{\rho0}; \; \rho = 1,2,\ldots,m$  		
+  	\item $k_\rho = k_{\rho0}; \; \rho = 1,2,\ldots,m$  		
   \end{enumerate}
-  $$L(\bar{q}) = K(\bar{q}) + \sum_{\rho=1}^{m} \lambda_\rho[K_{\rho_0} - K_\rho(\bar{q})]$$
-  $$\frac{\partial L}{\partial q_i} = \frac{\partial K}{\partial q_i} - \sum_{\rho=1}^{m} \lambda_\rho \frac{\partial K_\rho(\bar{q})}{\partial q_i} = 0; \; i=1,2,\ldots,n$$
-  $$\frac{\partial L}{\partial \lambda_\rho} = [K_{\rho_0} - K_\rho] = 0$$
+  $$L(\bar{q}) = k(\bar{q}) + \sum_{\rho=1}^{m} \lambda_\rho[k_{\rho_0} - k_\rho(\bar{q})]$$
+  $$\frac{\partial L}{\partial q_i} = \frac{\partial k}{\partial q_i} - \sum_{\rho=1}^{m} \lambda_\rho \frac{\partial k_\rho(\bar{q})}{\partial q_i} = 0; \; i=1,2,\ldots,n$$
+  $$\frac{\partial L}{\partial \lambda_\rho} = [k_{\rho_0} - k_\rho] = 0$$
   \paragraph*{Пример}
   $max P$ \\
   m - масса \\
@@ -405,10 +405,10 @@
   \end{center}
   \section{Поисковые методы}
   Рассмотрим условия, когда локальный экстремум является глобальным. Рассмотрим понятия выпуклой и вогнутой функции.\\
-  $$z = \lambda (K(\bar{q}') + (1-\lambda)K(\bar{q}''))$$  
+  $$z = \lambda (k(\bar{q}') + (1-\lambda)k(\bar{q}''))$$  
   \begin{tikzpicture}
     \draw[->] (-0.5,0)--(6,0) node[anchor=north] {$q$};
-  	\draw[->] (0,-0.5)--(0,4) node[anchor=east] {$K$};
+  	\draw[->] (0,-0.5)--(0,4) node[anchor=east] {$k$};
   	\draw[help lines] (1.5,0) node[below] {$q'$} -- ++(0,1.5) -- ++(3,1) -- ++(0,-2.5) node[below] {$q''$};
   	\draw (1.5,1.5) .. controls (2,2) and (3,3) .. (4.5,2.5);
   	\draw (1.5,1.5) .. controls (2,1) and (4,1.5) .. (4.5,2.5);
@@ -416,7 +416,7 @@
   	\draw (4,1.75) -- ++(1,-0.25) node[anchor=west] {Вогнутая};
   \end{tikzpicture}
   \\VERIFY  
-  $$K[\lambda \bar{q}' + (1-\lambda+q'')] \leq Z = \lambda(K(\bar{q}' + (1-\lambda)K(\bar{q}'))$$
+  $$k[\lambda \bar{q}' + (1-\lambda+q'')] \leq Z = \lambda(k(\bar{q}' + (1-\lambda)k(\bar{q}'))$$
   Если знак неравенства $\leq$ - имеем дело с выпуклой функцией.\\
   Если неравенство строгое - строго выпуклая функция.\\
   Если знак $\geq$ - то функция вогнутая.\\
@@ -424,23 +424,23 @@
   Если на выпуклом множестве определена вогнутая функция, тогда локальный максимум является глобальным.
   
   \section{Метод Гаусса-Зейделя}
-  Функция $K(q_1, q_2, \ldots, q_n);\;q_1, q_2, \ldots, q_n = const $
+  Функция $k(q_1, q_2, \ldots, q_n);\;q_1, q_2, \ldots, q_n = const $
   \begin{enumerate}
-    \item $max(min(K(q_1)))$ \\
+    \item $max(min(k(q_1)))$ \\
       \begin{tikzpicture}
   	    \draw[->] (-0.5,0)--(4,0) node[anchor=north] {$q_1$};
   	    \draw[->] (0,-0.5)--(0,4) node[anchor=east] {$q$};
   	    \draw (2,2) -- +(-0.5,0) -- +(-0.5,0.5) -- +(0.5, 0.5) -- +(0.5,-0.5) -- +(-1,-0.5) -- +(-1,1) -- +(1,1) -- +(1,-1) -- +(-1,-1);
       \end{tikzpicture}
-    \item $min(max(K(q_1)))$ \\
+    \item $min(max(k(q_1)))$ \\
       \begin{tikzpicture}
         \draw[->] (-0.5,0)--(4,0) node[anchor=north] {$q$};
-  	    \draw[->] (0,-0.5)--(0,4) node[anchor=east] {$K$};
+  	    \draw[->] (0,-0.5)--(0,4) node[anchor=east] {$k$};
   	    \draw (1,1) -- ++(1,0) -- ++(0,1) -- ++(0.5,0) -- ++(0,0.5) -- ++(0.25,0) -- ++(0,0.25);
       \end{tikzpicture}
   \end{enumerate}
   $$|q_1^m - q_1^r| \leq \epsilon_i - q_n$$
-  $$|K^m - K^r| \leq \eta $$
+  $$|k^m - k^r| \leq \eta $$
 
   \section{Градиентный метод оптимизации (первого порядка)}
   Идея: ищут стационарную точку (безусловный экстремум) равных значений показателя.\\
@@ -467,7 +467,7 @@
   \end{tikzpicture}\\
   Направление крутого восхождения:
   $$
-    \nabla K(\bar{q}^{\,r}) =
+    \nabla k(\bar{q}^{\,r}) =
     \begin{bmatrix}
       \frac{\partial k}{\partial q_1}\\
       \frac{\partial k}{\partial q_2}\\
@@ -481,11 +481,11 @@
   Противоположное ему направление называется антиградиентом(отрицательным градиентом).
   \par
   С каждым шагом мы вычисляем новое направление градиента, с тем чтобы двигаться к экстремуму.
-  $$\bar{q}^{\,2+1} = \bar{q}^{\,2} + \theta\nabla K(\bar{q}^{\,(2)})$$
-  $$\bar{q}_i^{\,2+1} = \bar{q}^{\,2} + \theta\bigg(\frac{\partial k}{\partial q_i}\bigg)_k$$
+  $$\bar{q}^{\,2+1} = \bar{q}^{\,2} + \Theta\nabla k(\bar{q}^{\,(2)})$$
+  $$\bar{q}_i^{\,2+1} = \bar{q}^{\,2} + \Theta\bigg(\frac{\partial k}{\partial q_i}\bigg)_k$$
   \par
   Иногда вектор градиент нормируется
-  $$\nabla K^{\,r}_{\,n}(q^{\,r}) = \frac{\Delta K(q_2)}{\Big[\sum_{k=1}^n\big(\frac{\partial k}{\partial q_i}\big)\Big]^{\frac{1}{2}}}$$
+  $$\nabla k^{\,r}_{\,n}(q^{\,r}) = \frac{\Delta k(q_2)}{\Big[\sum_{k=1}^n\big(\frac{\partial k}{\partial q_i}\big)\Big]^{\frac{1}{2}}}$$
   Выбор шага:
   \begin{enumerate}
     \item Метод с постоянным шагом
@@ -493,8 +493,8 @@
   \end{enumerate}
   \section{Метод с оптимальным шагом}
   Есть $k$ в точке $r+1$
-  $$K(\bar{q}^{r+1}) = K[\bar{q}^r + \Theta\nabla K(\bar{q}^r)]$$
-  Ищем $\Theta$, которое соответствует $max(K(q^{r+1}))$ и $min$, если мы решаем задачу на минимум.\\
+  $$k(\bar{q}^{r+1}) = k[\bar{q}^r + \Theta\nabla k(\bar{q}^r)]$$
+  Ищем $\Theta$, которое соответствует $max(k(q^{r+1}))$ и $min$, если мы решаем задачу на минимум.\\
   Мы свели задачу многомерной оптимизации к задаче одномерной оптимизации. Условная функция должна быть гладкая и должны существовать по крайней мере две производные; и матрица Гессе должна быть знакоопределённая.\\
   Если мы попадём в седло, то из этой точки надо вылезать с помощью другого метода. Если функция гладкая и имеет 3 производных, то градиентный метод сходится при $r \rightarrow \infty$. Если функция квадратичная, то мы приходим к экстремуму за конечное число шагов.
   \paragraph*{Ограничение значений параметра}
@@ -526,12 +526,12 @@
     \item Метод по своей сути не рассчитан на учёт ограничений.
   \end{itemize}
   \section{Градиентный метод (второго порядка)}
-  $$K(q^{\,r+1}) = K(\bar{q}^{\,r}) + \sum_{i = 1}^n\bigg(\frac{\partial k}{\partial q_1}\bigg)_r\Delta q_ir + \frac{1}{2}\sum^{n}_{i,j=1}\bigg(\frac{\partial^{\,2}k}{\partial q_i\partial q_j}\bigg)_r\Delta q_ir\Delta q_jr$$
+  $$k(q^{\,r+1}) = k(\bar{q}^{\,r}) + \sum_{i = 1}^n\bigg(\frac{\partial k}{\partial q_1}\bigg)_r\Delta q_ir + \frac{1}{2}\sum^{n}_{i,j=1}\bigg(\frac{\partial^{\,2}k}{\partial q_i\partial q_j}\bigg)_r\Delta q_ir\Delta q_jr$$
   $$\Delta q_ir = q_i^{\,r+1} - q_i^{\,r}$$
   \par
   В матричной форме
   \begin{equation}\label{eq:quad}
-    \phi^{\,2} = \overbracket[0.5pt][7pt]{\nabla^{\,T}\underset{\mathclap{\begin{matrix}\uparrow\\\text{\scriptsize{вектор}}\\\text{\scriptsize{строка}}\end{matrix}}}{K}(\bar{q}^{\,r})\bar{\Delta}\underset{\mathclap{\begin{matrix}\uparrow\\\text{\scriptsize{вектор}}\\\text{\scriptsize{столбец}}\end{matrix}}}{q^{\,2}}}^{\mathclap{\text{при умножении получается число}}}+\frac{1}{2}(\Delta\bar{q}^{\,r})^{\,T}\mathcal{J}(\bar{q}^{\,r})_\Delta\bar{q}^{\,r}
+    \phi^{\,2} = \overbracket[0.5pt][7pt]{\nabla^{\,T}\underset{\mathclap{\begin{matrix}\uparrow\\\text{\scriptsize{вектор}}\\\text{\scriptsize{строка}}\end{matrix}}}{k}(\bar{q}^{\,r})\bar{\Delta}\underset{\mathclap{\begin{matrix}\uparrow\\\text{\scriptsize{вектор}}\\\text{\scriptsize{столбец}}\end{matrix}}}{q^{\,2}}}^{\mathclap{\text{при умножении получается число}}}+\frac{1}{2}(\Delta\bar{q}^{\,r})^{\,T}\mathcal{J}(\bar{q}^{\,r})_\Delta\bar{q}^{\,r}
   \end{equation}
   \par
   \ref{eq:quad} - квадратичная форма.
@@ -542,24 +542,24 @@
   \ref{eq:up} - метод наискорейшего восхождения(спуска, если решаем задачу на $min$)
   \par
   В формуле \ref{eq:quad} возьмем производную по первому и второму слогаемому
-  $$\nabla K(\bar{q}^{\,r}) + \mathcal{J}(\bar{q}^{\,r})\Delta\bar{q}^{\,r} = 0$$
-  $$\mathcal{J}(q\,')\bar{\Delta} q^{\,r} = \nabla K(\bar{q}^{\,r})$$
+  $$\nabla k(\bar{q}^{\,r}) + \mathcal{J}(\bar{q}^{\,r})\Delta\bar{q}^{\,r} = 0$$
+  $$\mathcal{J}(q\,')\bar{\Delta} q^{\,r} = \nabla k(\bar{q}^{\,r})$$
   \par
   Умножаем на матрицу, обратную матрице $\mathcal{J}$.
-  $$\underbrace{\mathcal{J}^{\,-1}(\bar{q}^{\,r})\mathcal{J}(\bar{q}^{\,r})}_{\mathclap{\text{E - единичная матрица}}}\bar{\Delta}q^{\,r} = \mathcal{J}^{\,-1}(q^{\,2})\nabla K(\bar{q}^{\,2})$$
+  $$\underbrace{\mathcal{J}^{\,-1}(\bar{q}^{\,r})\mathcal{J}(\bar{q}^{\,r})}_{\mathclap{\text{E - единичная матрица}}}\bar{\Delta}q^{\,r} = \mathcal{J}^{\,-1}(q^{\,2})\nabla k(\bar{q}^{\,2})$$
   \par
   \begin{equation}\label{eq:cool}
-    \bar{\Delta}q^{\,r} = \mathcal{J}^{\,-1}(q^{\,r})\nabla K(\bar{q}^{\,r})
+    \bar{\Delta}q^{\,r} = \mathcal{J}^{\,-1}(q^{\,r})\nabla k(\bar{q}^{\,r})
   \end{equation}
   \par
   \ref{eq:cool} - направление самого крутого восхождения или наискорейшего спуска.
   \begin{equation}
-    \bar{q}^{\,r+1} = \bar{q}^{\,r} - \theta\mathcal{J}^{\,-1}(\bar{q}^{\,r})\nabla K(\bar{q}^{\,r})
+    \bar{q}^{\,r+1} = \bar{q}^{\,r} - \Theta\mathcal{J}^{\,-1}(\bar{q}^{\,r})\nabla k(\bar{q}^{\,r})
   \end{equation}
   \par
   Окончательное выражение для градиентного метода второго порядка(метода Ньютона)
   \par
-  Если функция $K$ - квадратичная, то оптимальная точка достигается за один шаг и точка берется равной 1.
+  Если функция $k$ - квадратичная, то оптимальная точка достигается за один шаг и точка берется равной 1.
   $$
     \mathcal{J} =
     \begin{bmatrix}
@@ -578,7 +578,7 @@
     \mathcal{J} = \frac{1}{\Delta}\mathcal{J}
   $$
   \paragraph*{Задача}
-  $$K = (q_1 - 5)^2 + (q_2 - 8)^2 + (q_1 - q_2)^2$$
+  $$k = (q_1 - 5)^2 + (q_2 - 8)^2 + (q_1 - q_2)^2$$
   Найти минимум функции.\\
   Начальные условия:\\
   $q^0 = 
@@ -586,11 +586,11 @@
     0 \\ 
     0    
   \end{bmatrix}$
-  $$\frac{\partial K}{\partial q_1} = 2(q_1 - 5) + 2(q_1 - q_2) = -10$$
-  $$\frac{\partial K}{\partial q_2} = 2(q_2 - 8) - 2(q_1 - q_2) = -16$$
-  $$\frac{\partial^2K}{\partial q_1^2} = 2 + 2 = 4$$
-  $$\frac{\partial^2K}{\partial q_2^2} = 2 + 2 = 4$$
-  $$\frac{\partial^2K}{\partial q_1 \partial q_2} = -2$$  
+  $$\frac{\partial k}{\partial q_1} = 2(q_1 - 5) + 2(q_1 - q_2) = -10$$
+  $$\frac{\partial k}{\partial q_2} = 2(q_2 - 8) - 2(q_1 - q_2) = -16$$
+  $$\frac{\partial^2k}{\partial q_1^2} = 2 + 2 = 4$$
+  $$\frac{\partial^2k}{\partial q_2^2} = 2 + 2 = 4$$
+  $$\frac{\partial^2k}{\partial q_1 \partial q_2} = -2$$  
   $$\mathcal{J} = 
   \begin{bmatrix}
     4 & -2 \\
@@ -607,7 +607,7 @@
     4 & 2 \\
     2 & 4
   \end{bmatrix}$$
-  $$\nabla K = \begin{bmatrix}
+  $$\nabla k = \begin{bmatrix}
     -10 \\
     -16
   \end{bmatrix}$$
