@@ -175,9 +175,26 @@
   $$\tau^\varrho = \tau + 1$$
   $$\tau = 1,618$$
   \par
-  TODO: график
+  \begin{tikzpicture}
+    \draw[|-|] (0,0) -- (3,0);
+    \draw (1,0) -- (1,1);
+    \draw (2,0) -- (2,0.5);
+    \draw[decorate,decoration={brace,raise=3pt}] (1.5,0) -- (0,0);
+    \draw[decorate,decoration={brace,raise=3pt}] (3,0) -- (1.5,0);
+    \draw (0.75,-0.1) node[below] {$\frac{\Delta_0}{\tau}$};
+    \draw (2.25,-0.1) node[below] {$\frac{\Delta_0}{\tau}$};
+    \draw (0.5,-0.9) node[below] {$\frac{\Delta_0}{\tau^{\,2}}$};
+    \draw (0.5,-0.9) node[below] {$\frac{\Delta_0}{\tau^{\,2}}$};
+    \draw[<->] (0,-0.9) -- (1,-0.9);
+    \draw[dashed] (1,-0.9) -- (1,0);
+    \draw[dashed] (0,-0.9) -- (0,0);
+  \end{tikzpicture}
   \par
   На каждой итерации только одно вычисление, а на следующем берем результат предыдущего. На первой итерации 2 вычисления.
+  \par
+  $r$ - вычислений
+  \par
+  $(r-1)$ - итерация
   $$\frac{\Delta_0}{\Delta_r} = \tau^{r-1}$$
   \par
   Преимущества: хорошая сходимость.
