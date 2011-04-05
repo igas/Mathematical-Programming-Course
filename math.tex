@@ -468,18 +468,25 @@
   	\item $k_\rho = k_{\rho0}; \; \rho = 1,2,\ldots,m$  		
   \end{enumerate}
   $$L(\bar{q}) = k(\bar{q}) + \sum_{\rho=1}^{m} \lambda_\rho[k_{\rho_0} - k_\rho(\bar{q})]$$
+  $\lambda_\rho$ --- множитель Лагранжа.
   $$\frac{\partial L}{\partial q_i} = \frac{\partial k}{\partial q_i} - \sum_{\rho=1}^{m} \lambda_\rho \frac{\partial k_\rho(\bar{q})}{\partial q_i} = 0; \; i=1,2,\ldots,n$$
-  $$\frac{\partial L}{\partial \lambda_\rho} = [k_{\rho_0} - k_\rho] = 0$$
+  $$\frac{\partial L}{\partial \lambda_\rho} = [k_{\rho_0} - k_\rho] = 0;\; \rho=1,2,\ldots,m$$
+  Получилась система из $n+m$ уравнений. Если решим систему, получим аналитическое решение задачи.
+  
   \paragraph*{Пример}
-  $max P$ \\
-  m - масса \\
-  v - объём \\
-  c - экономия \\
-  $$max P$$
+  Задача имеет смысл, когда $p=1$\\
+  $max\; p$ \\
+  Есть:\par
+  m - масса \par
+  v - объём \par
+  c - экономия \par
+  p - вероятность безотказной работы
+  $$max\; p$$
   $$m(v,c) \leq m(v_0,c_0)$$
   \begin{center}
-	либо $min(m,v,c)$ при $P \geq P_0$
+	либо $min(m,v,c)$ при $p \geq p_0$
   \end{center}
+  
   \section{Поисковые методы}
   Рассмотрим условия, когда локальный экстремум является глобальным. Рассмотрим понятия выпуклой и вогнутой функции.\\
   $$z = \lambda (k(\bar{q}') + (1-\lambda)k(\bar{q}''))$$  
