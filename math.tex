@@ -204,8 +204,27 @@
   При каждом последующем шаге результат должен быть не хуже предыдущего.
   \par
   \subsection{Метод с постоянным шагом}
-  TODO: Графики
-  $$k(q_2)>k(q_1)$$ TODO: график
+  \begin{center}
+  \begin{tikzpicture}
+    \draw[|-|] (0,0) -- (5,0);
+    \draw (1,0) -- (1,0.25);
+    \draw (2,0) -- (2,0.5);
+    \draw (1,0) node[below] {$q^{\,(1)}$};
+    \draw (2,0) node[below] {$q^{\,(2)}$};
+    \draw (1.5,0) node[above] {$\lambda$};
+  \end{tikzpicture}
+  \end{center}
+  $$k\Big(q^{\,(2)}\Big)>k\Big(q^{\,(1)}\Big)\text{\;--\;вправо}$$
+  $$k\Big(q^{\,(2)}\Big)<k\Big(q^{\,(1)}\Big)\text{\;--\;влево}$$
+  $$k\big(q^{\,r+1}\big)<k\big(q^{\,r}\big)$$
+  \begin{center}
+  \begin{tikzpicture}
+    \draw[|-|] (0,0) -- (2,0);
+    \draw (1,0) node[below] {$\lambda = \lambda'm$};
+    \draw (0,0) node[above] {$\lambda_r$};
+    \draw (2,0) node[above] {$\lambda_{r+1}$};
+  \end{tikzpicture}
+  \end{center}
   \subsection{Метод с переменным (пропорциональным) шагом}
   TODO: График
   $$q_3 = q_2 + \Theta\frac{k(q_2) - k(q_1)}{\underbrace{q_2 - q_1}_{\lambda}}$$
