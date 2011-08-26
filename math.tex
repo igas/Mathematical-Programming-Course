@@ -842,7 +842,7 @@
   \paragraph{Операция колебания.}
   \begin{tikzpicture}[scale=1.2]
     \draw (0,0) node[below left]{0} -- (1,1.732) node[above]{$n$} -- (2,0) node[below right]{1}  -- (0,0);
-    \draw (2,0) -- (3,1.732) node[above]{$n+1$}  -- (1,1.732) -- (3,1.732);
+    \draw (2,0) -- (3,1.732) node[above]{$n+1$}  -- (1,1.732);
     \draw[dashed] (3,1.732) -- (0,0) -- (-1,1.732) node[above]{$n+2$} -- (1,1.732);
     \draw [->] (0,2.5) arc (135:60:30pt);
   \end{tikzpicture}
@@ -893,6 +893,59 @@
   \end{itemize}
   
   \section{Симплекс с переменным шагом}
+  \paragraph{Изменение размера симплекса, но сохранение формы.}
+  Рассмотрим первую модификацию.\\  
+
+  \begin{tikzpicture}[scale=1.5]
+    \draw (0,0) node[below left]{0} -- +(60:2) coordinate (n) node[above left]{$n$} -- +(0:2) coordinate (one) node[below right]{1}  -- (0,0);
+    \draw (one) -- +(60:2) coordinate(n plus 1) node[above right]{$n+1$} -- (n);   
+    \coordinate (1 stroke) at ($ (one)!.25!(n plus 1) $) (1 stroke) node[below right]{$1'$};
+    \coordinate (n stroke) at ($ (n)!.25!(n plus 1)$) (n stroke) node[above left]{$n'$};
+    \draw (1 stroke) -- (n stroke) -- +(60:1.5) node[above]{$n+2$} -- (n plus 1);
+    
+    \draw[<->] ([yshift=-9pt] 0,0) -- ([yshift=-9pt] one) node [sloped,midway,fill=white]{$L_0$};
+    
+  \end{tikzpicture}
   
-  % in progress...
+  $n$ --- Наилучшая точка.\par
+  $0$ --- Наихудшая точка.\par
+  $n+1$ --- Не наихудшая.\par
+  $L_0$ --- Размер исходного симплекса.\\
+  
+  Мы не вычисляем значение показателя в вершине ?, т.~к. нам надо выбрать наихудшую вершину. Делаем предположение, что это $1'$. С каждым шагом размер симплекса уменьшается. Производим только одно вычисление. Остаётся постоянная отражённая вершина, все остальные меняются и подтягиваются к отражённой.\\
+  
+  Рассмотрим вторую модификацию.\\
+  \begin{tikzpicture}[scale=1.5]
+    \draw (0,0) node[below left]{0} -- +(60:2) coordinate (n) node[above left]{$n$} -- +(0:2) coordinate (one) node[below right]{1}  -- (0,0);
+    \draw (one) -- +(60:2) coordinate(n plus 1) node[below right]{$n+1$} -- (n);    
+    \coordinate (1 stroke) at ($ (one)!.25!(n) $) (1 stroke) node[below left]{$1'$};
+    \coordinate (n plus 1 stroke) at ($ (n plus 1)!.25!(n) $) (n plus 1 stroke) node[above right]{$n+1'$};
+    \draw (1 stroke) -- (n plus 1 stroke) -- +(120:1.5) node[above]{$n+2$} -- (n);
+  \end{tikzpicture}
+  
+  $K(\bar{q}^{\,n+1}) > K(\bar{q}^{\,n})$; Подтягиваемся к $n$.\\
+  
+  Если отражённая вершина наилучшая, то обе вершины на данном шаге совпадают. 
+  $$L_r = l_0 + \gamma_0$$
+  
+  $\gamma_r$ --- зависимость; при $\gamma_0 = 1,\;r\rightarrow\infty\quad \gamma\rightarrow\infty$\\
+  Можем подобрать любую зависимость,\\
+  $$\gamma_r = \frac{1}{1+d_r}$$ 
+  \begin{center}Гиперболическая зависимость.\end{center}
+  Близко --- метод составления наилучшей вершины.
+  $$\gamma_r = e^{-\mu r}$$ 
+  \begin{center}Более плавно уменьшается.\end{center}
+  Составляет отражение тогда, когда исходная точка далеко от экстремума.\\
+  
+  Если плохо выбрана $\gamma$, то размер симплекса будет мал; следовательно эффект уменьшается.
+  $$L_r \geq L_{min}$$
+  Если в результате пришли к $L_{min}$, то меньший размер симплекса не берём и следовательно метод приходит к методу с постоянным шагом.\\
+  
+  \textbf{Преимущества:}\newline
+  При правильном $\gamma_r$ эффект метода возрастает, т.~к. число шагов уменьшается. Симплекс мал, чтобы обеспечить эффективность.\\
+  
+  \textbf{Недостатки:}\newline
+  -- Метод с переменным, но не оптимальным шагом.\\
+  -- $\gamma_r$ задаём не исходя из свойств оптимизированной поверхности.
+  
 \end{document}
