@@ -898,10 +898,10 @@
 
   \begin{tikzpicture}[scale=1.5]
     \draw (0,0) node[below left]{0} -- +(60:2) coordinate (n) node[above left]{$n$} -- +(0:2) coordinate (one) node[below right]{1}  -- (0,0);
-    \draw (one) -- +(60:2) coordinate(n plus 1) node[above right]{$n+1$} -- (n);   
-    \coordinate (1 stroke) at ($ (one)!.25!(n plus 1) $) (1 stroke) node[below right]{$1'$};
-    \coordinate (n stroke) at ($ (n)!.25!(n plus 1)$) (n stroke) node[above left]{$n'$};
-    \draw (1 stroke) -- (n stroke) -- +(60:1.5) node[above]{$n+2$} -- (n plus 1);
+    \draw (one) -- +(60:2) coordinate(n+1) node[above right]{$n+1$} -- (n);   
+    \coordinate (1') at ($ (one)!.25!(n+1) $) (1') node[below right]{$1'$};
+    \coordinate (n') at ($ (n)!.25!(n+1)$) (n') node[above left]{$n'$};
+    \draw (1') -- (n') -- +(60:1.5) node[above]{$n+2$} -- (n+1);
     
     \draw[<->] ([yshift=-9pt] 0,0) -- ([yshift=-9pt] one) node [sloped,midway,fill=white]{$L_0$};
     
@@ -917,10 +917,10 @@
   Рассмотрим вторую модификацию.\\
   \begin{tikzpicture}[scale=1.5]
     \draw (0,0) node[below left]{0} -- +(60:2) coordinate (n) node[above left]{$n$} -- +(0:2) coordinate (one) node[below right]{1}  -- (0,0);
-    \draw (one) -- +(60:2) coordinate(n plus 1) node[below right]{$n+1$} -- (n);    
-    \coordinate (1 stroke) at ($ (one)!.25!(n) $) (1 stroke) node[below left]{$1'$};
-    \coordinate (n plus 1 stroke) at ($ (n plus 1)!.25!(n) $) (n plus 1 stroke) node[above right]{$n+1'$};
-    \draw (1 stroke) -- (n plus 1 stroke) -- +(120:1.5) node[above]{$n+2$} -- (n);
+    \draw (one) -- +(60:2) coordinate(n+1) node[below right]{$n+1$} -- (n);    
+    \coordinate (1') at ($ (one)!.25!(n) $) (1') node[below left]{$1'$};
+    \coordinate (n+1') at ($ (n+1)!.25!(n) $) (n+1') node[above right]{$n+1'$};
+    \draw (1') -- (n+1') -- +(120:1.5) node[above]{$n+2$} -- (n);
   \end{tikzpicture}
   
   $K(\bar{q}^{\,n+1}) > K(\bar{q}^{\,n})$; Подтягиваемся к $n$.\\
