@@ -290,8 +290,16 @@
     \draw (2,0) node[above] {$\lambda_{r+1}$};
   \end{tikzpicture}
   \end{center}
+  
   \subsection{Метод с переменным (пропорциональным) шагом}
-  TODO: График??????
+	\vfill
+  \begin{tikzpicture}
+	  \draw (0,0) -- (8,0);
+	  \foreach \x in {0,2,3,4,8}
+	  	\draw (\x,-2pt) -- (\x,2pt);
+	 	\draw (2,0) node[below] {$q^{(1)}$} (3,0) node[below] {$\lambda$} (4,0) node[below] {$q^{(2)}$};
+  \end{tikzpicture}
+  
   $$q^{\,(3)} = q^{\,(2)} + \Theta\frac{k(q^{\,(2)}) - k(q^{\,(1)})}{\underbrace{q^{\,(2)} - q^{\,(1)}}_{\lambda}}$$
   $$q^{(r)} = q^{(r-1)} + \Theta = \frac{k(q^{r-1}) - k(q^{r-2})}{q^{(r-1)} - q^{(r-2)}}=\frac{k(q^{r-1}) - k(q^{r-2})}{\lambda}$$
   $$\Theta\frac{k\Big(q^{(2)}\Big) - k\Big(q^{(1)}\Big)}{\lambda}=\lambda$$
@@ -299,10 +307,27 @@
   \par
   Частный случай градиентного метода. Шаг зависит от вида поверхности.
   \subsection{Метод с переменным шагом с последующей квадратичной апроксимацией}
-  $$k = TODO: дописать функцию$$
-  TODO: график
-  \par
-  Увеличиваем шаг в 2 раза, TODO: дописать параграф
+  \[
+  	K = 100 - (q - 7)^2
+  \]
+  \newline
+  \begin{tikzpicture}[scale=.5]
+  \node[above] at (-2.5,1) {N шага:};
+  \foreach \x/\n in {1/1,2/2,4/3,8/4,16/5}
+  {
+  	\node[above] at (\x,1) {\n};
+  }
+  \draw (.5,0) node[above] {$\lambda$} (1.5,0) node[above] {$\lambda$} (12,0) node[above] {доп. точка};
+  \draw (0,0) -- (16,0);
+  \node[below] at (-1.5,-1) {$K$:};
+  \foreach \x/\k in {0/51,1/64,2/75,4/91,8/99,12/75,16/19}
+  {
+  	\draw (\x,-3pt) -- (\x,3pt) node[below] {\x};
+  	\node[below] at (\x,-1) {\k};
+  }
+  \end{tikzpicture}\\
+  
+  Увеличиваем шаг в 2 раза,
   $$q^{r+1} = q^r + \lambda \cdot 2^{r-2}$$
   $$\lambda_1 = 2^{r-3}$$
   \par
